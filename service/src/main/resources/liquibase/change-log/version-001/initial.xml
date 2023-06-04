@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd ">
+	<changeSet author="dm-comp" id="Initial-Data-Scheme" runInTransaction="true" failOnError="true">
+		<createTable tableName="NOTE">
+			<column name="TITLE" type="VARCHAR(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CONTENT" type="LONGVARCHAR" />
+			<column name="USER" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addPrimaryKey columnNames="ID" tableName="NOTE" />
+		<addAutoIncrement columnDataType="BIGINT" columnName="ID" startWith="1" tableName="NOTE" />
+		<createTable tableName="APPOINTMENT">
+			<column name="TIME_START" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="TITLE" type="VARCHAR(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="USER" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="TIME_END" type="TIMESTAMP" />
+		</createTable>
+		<addPrimaryKey columnNames="ID" tableName="APPOINTMENT" />
+		<addAutoIncrement columnDataType="BIGINT" columnName="ID" startWith="1" tableName="APPOINTMENT" />
+		<createTable tableName="USER">
+			<column name="CURRENT_SITZUNG" type="BIGINT" />
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="TOKEN" type="VARCHAR(20)">
+				<constraints nullable="false" />
+			</column>
+			<column name="GLOBAL_ID" type="VARCHAR(50)" />
+			<column name="NAME" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addPrimaryKey columnNames="ID" tableName="USER" />
+		<addAutoIncrement columnDataType="BIGINT" columnName="ID" startWith="1" tableName="USER" />
+		<addForeignKeyConstraint baseColumnNames="USER" baseTableName="NOTE" constraintName="FK_NOTE_USER_TO_USER" referencedColumnNames="ID" referencedTableName="USER" />
+		<addForeignKeyConstraint baseColumnNames="USER" baseTableName="APPOINTMENT" constraintName="FK_APPOINTMENT_USER_TO_USER" referencedColumnNames="ID" referencedTableName="USER" />
+	</changeSet>
+</databaseChangeLog>
