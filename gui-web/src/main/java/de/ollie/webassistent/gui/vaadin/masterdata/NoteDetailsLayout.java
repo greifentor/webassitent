@@ -2,6 +2,7 @@ package de.ollie.webassistent.gui.vaadin.masterdata;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 
 import de.ollie.webassistent.core.model.Note;
@@ -33,7 +34,7 @@ public class NoteDetailsLayout extends AbstractMasterDataBaseLayout {
 
 	private ComboBox<User> comboBoxUser;
 	private TextField textFieldTitle;
-	private TextField textFieldContent;
+	private TextArea textAreaContent;
 
 	@Override
 	public void onAttach(AttachEvent attachEvent) {
@@ -46,7 +47,7 @@ public class NoteDetailsLayout extends AbstractMasterDataBaseLayout {
 								? comboBoxItemLabelGenerator.getLabel(Note.USER, user)
 								: "" + user.getName());
 		textFieldTitle = createTextField("NoteDetailsLayout.field.title.label", model.getTitle());
-		textFieldContent = createTextField("NoteDetailsLayout.field.content.label", model.getContent());
+		textAreaContent = createTextArea("NoteDetailsLayout.field.content.label", model.getContent());
 		getStyle().set("-moz-border-radius", "4px");
 		getStyle().set("-webkit-border-radius", "4px");
 		getStyle().set("border-radius", "4px");
@@ -60,7 +61,7 @@ public class NoteDetailsLayout extends AbstractMasterDataBaseLayout {
 		add(
 				textFieldTitle,
 				comboBoxUser,
-				textFieldContent,
+				textAreaContent,
 				getMasterDataButtonLayout(model.getId() > 0));
 		textFieldTitle.focus();
 	}
@@ -90,7 +91,7 @@ public class NoteDetailsLayout extends AbstractMasterDataBaseLayout {
 	protected void save() {
 		model.setTitle(textFieldTitle.getValue());
 		model.setUser(comboBoxUser.getValue());
-		model.setContent(textFieldContent.getValue());
+		model.setContent(textAreaContent.getValue());
 		observer.save(service.update(model));
 	}
 
