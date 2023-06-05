@@ -38,6 +38,7 @@ import de.ollie.webassistent.gui.vaadin.component.ButtonFactory;
 import de.ollie.webassistent.gui.vaadin.component.HeaderLayout;
 import de.ollie.webassistent.gui.vaadin.component.HeaderLayout.HeaderLayoutMode;
 import de.ollie.webassistent.gui.vaadin.component.MasterDataButtonLayout;
+import de.ollie.webassistent.gui.vaadin.masterdata.MasterDataGUIConfiguration;
 import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 

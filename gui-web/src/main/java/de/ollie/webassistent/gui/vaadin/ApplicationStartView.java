@@ -33,8 +33,6 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * A start view for the application.
- *
- * GENERATED CODE !!! DO NOT CHANGE !!!
  */
 @Route(ApplicationStartView.URL)
 @PreserveOnRefresh
