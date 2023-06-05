@@ -8,17 +8,18 @@ import com.vaadin.flow.component.textfield.TextField;
 import de.ollie.webassistent.core.model.Appointment;
 import de.ollie.webassistent.core.model.User;
 import de.ollie.webassistent.core.service.AppointmentService;
-import de.ollie.webassistent.core.service.UserService;
 import de.ollie.webassistent.core.service.localization.ResourceManager;
+import de.ollie.webassistent.core.service.UserService;
 import de.ollie.webassistent.gui.SessionData;
 import de.ollie.webassistent.gui.vaadin.component.AbstractMasterDataBaseLayout;
 import de.ollie.webassistent.gui.vaadin.component.ButtonFactory;
+import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 
 /**
- * NOT GENERATED CODE !!! DO CHANGE !!!
+ * GENERATED CODE !!! DO NOT CHANGE !!!
  */
-// @Generated
+@Generated
 @RequiredArgsConstructor
 public class AppointmentDetailsLayout extends AbstractMasterDataBaseLayout {
 
@@ -32,9 +33,9 @@ public class AppointmentDetailsLayout extends AbstractMasterDataBaseLayout {
 	private final DetailsLayoutComboBoxItemLabelGenerator<Appointment> comboBoxItemLabelGenerator;
 
 	private ComboBox<User> comboBoxUser;
+	private TextField textFieldTitle;
 	private DateTimePicker dateTimePickerTimeStart;
 	private DateTimePicker dateTimePickerTimeEnd;
-	private TextField textFieldTitle;
 
 	@Override
 	public void onAttach(AttachEvent attachEvent) {
@@ -47,22 +48,8 @@ public class AppointmentDetailsLayout extends AbstractMasterDataBaseLayout {
 								? comboBoxItemLabelGenerator.getLabel(Appointment.USER, user)
 								: "" + user.getName());
 		textFieldTitle = createTextField("AppointmentDetailsLayout.field.title.label", model.getTitle());
-		dateTimePickerTimeStart =
-				new DateTimePicker(
-						resourceManager
-								.getLocalizedString(
-										"AppointmentDetailsLayout.field.timestart.label.text",
-										session.getLocalization()),
-						model.getTimeStart(),
-						event -> System.out.println("start time set"));
-		dateTimePickerTimeEnd =
-				new DateTimePicker(
-						resourceManager
-								.getLocalizedString(
-										"AppointmentDetailsLayout.field.timeend.label.text",
-										session.getLocalization()),
-						model.getTimeEnd(),
-						event -> System.out.println("end time set"));
+		dateTimePickerTimeStart = new DateTimePicker(resourceManager.getLocalizedString("AppointmentDetailsLayout.field.timestart.label", session.getLocalization()), model.getTimeStart(), event -> {});
+		dateTimePickerTimeEnd = new DateTimePicker(resourceManager.getLocalizedString("AppointmentDetailsLayout.field.timeend.label", session.getLocalization()), model.getTimeEnd(), event -> {});
 		getStyle().set("-moz-border-radius", "4px");
 		getStyle().set("-webkit-border-radius", "4px");
 		getStyle().set("border-radius", "4px");
